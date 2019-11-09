@@ -113,3 +113,41 @@ void RobotSPL::movimentacao(){
         }
     }
 }
+void RobotSPL::estudaestadoDeJogo(){
+    std::cout <<"INITIAL=0, READY=1, SET=2, PLAYING=3, PENALIZED=4, FINISHED 5"<< std::endl;
+    int aux;
+    std::cin>> aux;
+    while(aux>5 || aux<0){
+        switch (aux)
+        {
+            case 0:
+                std::cout<< "Posição INITIAL:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+            case 1:
+                std::cout<< "Posição READY:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+            case 2:
+                std::cout<< "Posição SET:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+            case 3:
+                std::cout<< "Posição PLAYING:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+            case 4:
+                std::cout<< "Posição PENALIZED:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+            case 5:
+                std::cout<< "Posição FINISHED:"<<std::endl;
+                std::cout<<""<<std::endl;
+                break;
+        default:
+            std::cout<< "Valor invalido"<<std::endl;
+            break;
+        }
+        std::cin >> aux;
+    }
+}

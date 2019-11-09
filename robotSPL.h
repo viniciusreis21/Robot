@@ -38,6 +38,7 @@ class RobotSPL: public Robot{
         void setsensCamera(bool,bool);
         void movimentacao();
         void procuraBola();
+        void estudaestadoDeJogo();
         string getPostura();
         Estado2D getorientacaoCampo();
         int getPosicao();

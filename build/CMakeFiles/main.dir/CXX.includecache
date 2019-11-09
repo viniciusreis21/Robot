@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vinicius/Development/Robot/main.cpp
+iostream
+-
+robot.h
+/home/vinicius/Development/Robot/robot.h
+robotSPL.h
+/home/vinicius/Development/Robot/robotSPL.h
+
+/home/vinicius/Development/Robot/robot.cpp
+robot.h
+/home/vinicius/Development/Robot/robot.h
+iostream
+-
+
+/home/vinicius/Development/Robot/robot.h
+iostream
+-
+
+/home/vinicius/Development/Robot/robotSPL.cpp
+robotSPL.h
+/home/vinicius/Development/Robot/robotSPL.h
+iostream
+-
+cstdlib
+-
+time.h
+-
+
+/home/vinicius/Development/Robot/robotSPL.h
+iostream
+-
+robot.h
+/home/vinicius/Development/Robot/robot.h
+string
+-
+

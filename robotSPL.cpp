@@ -1,6 +1,10 @@
 #include "robotSPL.h"
 #include <iostream>
 #include <cstdlib>.
+#include <time.h> 
+
+
+
 RobotSPL::RobotSPL(){
     std::cout<<"Construtor RobotSPL invocado."<<std::endl;
 }
@@ -9,25 +13,25 @@ RobotSPL::RobotSPL(int nMot,int nSens,float bat, string post,Estado2D orient, in
     this->orientacaoCampo=orient;
     this->estadoDeJogo=estJ;
     this->posicao=pos;
+    this->sensCamera[0]=0;
+    this->sensCamera[1]=0;
     std::cout<<"Construtor do RobotSPL com parametros invocado."<<std::endl;
 }
 int RobotSPL::getEstadoDeJogo(){
     return this->estadoDeJogo;
 }
 string RobotSPL::getPostura(){
-    return this->postura
+    return this->postura;
 }
 Estado2D RobotSPL::getorientacaoCampo(){
-    return this->orientacaoCampo
+    return this->orientacaoCampo;
 }
 int RobotSPL::getPosicao(){
     return this->posicao;
 }
 void RobotSPL::setPostura(string post){
-    if(post.length != 0){
         this->postura = post;
-    }
-    else std::cout<<"string vazia" << std::endl;
+
 }
 void RobotSPL::setorientacaoCampo(Estado2D est){
     this->orientacaoCampo = est; // teste 
@@ -65,8 +69,12 @@ void RobotSPL::setsensCamera(bool sens1,bool sens2){
 }
 void RobotSPL::procuraBola(){
     std::cout<<"Procurando a bola..."<<std::endl;
+    srand (time(NULL));
     int x=rand()%100;
-    while(x<30){
+    std::cout<< x<<std::endl;
+    x=rand()%100;
+    std::cout<< x<<std::endl;
+    while(x<80){
         std::cout<<"Procurando a bola..."<<std::endl;
         x = rand()%100;
     }
@@ -74,6 +82,11 @@ void RobotSPL::procuraBola(){
     setsensCamera(0,1); // Quando achar a bola, seta a segunda camera para 1;
 }
 void RobotSPL::movimentacao(){
+    if(estadoDeJogo!= PLAYING){
+        std::cout<<"Nao pode jogar"<<std::cout;
+        return;
+    }
+    
     if(posicao == ATACANTE){
         if(getsensCamera()==1){
             std::cout<< "Atacante indo ate a bola."<<std::endl;

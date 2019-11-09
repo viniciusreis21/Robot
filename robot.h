@@ -19,6 +19,7 @@ class Robot
   public:
     Robot();
     Robot(int,int,float); //Sobrecarga do construtor robot
+    ~Robot();
     void Locomocao();
     int getNumeroMotores();
     int getNumeroSensores();

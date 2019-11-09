@@ -29,7 +29,15 @@ class RobotSPL: public Robot{
         Estado2D orientacaoCampo;
         int posicao;
         int estadoDeJogo;
+        bool sensCamera[2];
     public:
+        RobotSPL();
+        RobotSPL(int,int,float,string,Estado2D,int,int);
+        ~RobotSPL();
+        bool getsensCamera();
+        void setsensCamera(bool,bool);
+        void movimentacao();
+        void procuraBola();
         string getPostura();
         Estado2D getorientacaoCampo();
         int getPosicao();

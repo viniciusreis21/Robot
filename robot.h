@@ -21,7 +21,7 @@ class Robot
     void Locomocao();
     int getNumeroMotores();
     int getNumeroSensores();
-    int getNivelBateria();
+    float getNivelBateria();
     Estado getOrientacao();
     void setOrientacao(Estado);
     void setNivelBateria(float);

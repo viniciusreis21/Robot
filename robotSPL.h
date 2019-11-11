@@ -18,7 +18,9 @@
 #include<string>
 using std::string;
 
-
+struct Point{
+    float x, y;
+};
 
 class RobotSPL: public Robot{
     private:
@@ -27,6 +29,10 @@ class RobotSPL: public Robot{
         int posicao;
         int estadoDeJogo;
         bool sensCamera[2];
+        Point bola;
+
+    
+
     public:
         RobotSPL();
         RobotSPL(int,int,float,string,Estado,int,int);
@@ -40,10 +46,12 @@ class RobotSPL: public Robot{
         Estado getorientacaoCampo();
         int getPosicao();
         int getEstadoDeJogo();
+        Point getBola();
         void setEstadoDeJogo(int);
         void setPostura(string);
         void setorientacaoCampo(Estado);
         void setPosicao(int);
+        void setBola(Point);
 
 };
 

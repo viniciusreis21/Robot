@@ -67,6 +67,14 @@ void RobotSPL::setsensCamera(bool sens1,bool sens2){
     this->sensCamera[0]=sens1;
     this->sensCamera[1]=sens2;
 }
+Point RobotSPL::getBola(){
+    return this.bola;
+}
+
+
+void RobotSPL::setBola(Point bola){
+    this.bola = bola;
+}
 void RobotSPL::procuraBola(){
     std::cout<<"Procurando a bola..."<<std::endl;
     srand (time(NULL));

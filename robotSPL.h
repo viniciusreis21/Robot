@@ -18,21 +18,18 @@
 #include<string>
 using std::string;
 
-struct Estado2D{
-    float x,y;
-};
 
 
 class RobotSPL: public Robot{
     private:
         string postura;
-        Estado2D orientacaoCampo;
+        Estado orientacaoCampo;
         int posicao;
         int estadoDeJogo;
         bool sensCamera[2];
     public:
         RobotSPL();
-        RobotSPL(int,int,float,string,Estado2D,int,int);
+        RobotSPL(int,int,float,string,Estado,int,int);
         ~RobotSPL();
         bool getsensCamera();
         void setsensCamera(bool,bool);
@@ -40,12 +37,12 @@ class RobotSPL: public Robot{
         void procuraBola();
         void estudaestadoDeJogo();
         string getPostura();
-        Estado2D getorientacaoCampo();
+        Estado getorientacaoCampo();
         int getPosicao();
         int getEstadoDeJogo();
         void setEstadoDeJogo(int);
         void setPostura(string);
-        void setorientacaoCampo(Estado2D);
+        void setorientacaoCampo(Estado);
         void setPosicao(int);
 
 };

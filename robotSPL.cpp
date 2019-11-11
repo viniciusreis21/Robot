@@ -8,13 +8,13 @@
 RobotSPL::RobotSPL(){
     std::cout<<"Construtor RobotSPL invocado."<<std::endl;
 }
-RobotSPL::RobotSPL(int nMot,int nSens,float bat, string post,Estado2D orient, int pos, int estJ):Robot(nMot,nSens,bat){
+RobotSPL::RobotSPL(int nMot,int nSens,float bat, string post,Estado orient, int pos, int estJ):Robot(nMot,nSens,bat){
     this->postura=post;
     this->orientacaoCampo=orient;
     this->estadoDeJogo=estJ;
     this->posicao=pos;
-    this->sensCamera[0]=0;
-    this->sensCamera[1]=0;
+    this->sensCamera[0]=false;
+    this->sensCamera[1]=false;
     std::cout<<"Construtor do RobotSPL com parametros invocado."<<std::endl;
 }
 int RobotSPL::getEstadoDeJogo(){
@@ -23,7 +23,7 @@ int RobotSPL::getEstadoDeJogo(){
 string RobotSPL::getPostura(){
     return this->postura;
 }
-Estado2D RobotSPL::getorientacaoCampo(){
+Estado RobotSPL::getorientacaoCampo(){
     return this->orientacaoCampo;
 }
 int RobotSPL::getPosicao(){
@@ -33,7 +33,7 @@ void RobotSPL::setPostura(string post){
         this->postura = post;
 
 }
-void RobotSPL::setorientacaoCampo(Estado2D est){
+void RobotSPL::setorientacaoCampo(Estado est){
     this->orientacaoCampo = est; // teste 
 }
 void RobotSPL::setPosicao(int pos){
@@ -55,12 +55,12 @@ RobotSPL::~RobotSPL(){
     std::cout<<"Destrutor RobotSPL invocado."<<std::endl;
 }
 bool RobotSPL::getsensCamera(){
-    if(sensCamera[0]==1 || sensCamera[1]==1){
-        return 1;
+    if(sensCamera[0]==true || sensCamera[1]==true){
+        return true;
     }
     else
     {
-        return 0;
+        return false;
     }    
 }
 void RobotSPL::setsensCamera(bool sens1,bool sens2){
@@ -72,14 +72,12 @@ void RobotSPL::procuraBola(){
     srand (time(NULL));
     int x=rand()%100;
     std::cout<< x<<std::endl;
-    x=rand()%100;
-    std::cout<< x<<std::endl;
     while(x<80){
         std::cout<<"Procurando a bola..."<<std::endl;
         x = rand()%100;
     }
     std::cout<<"Indentificou a bola"<<std::endl;
-    setsensCamera(0,1); // Quando achar a bola, seta a segunda camera para 1;
+    setsensCamera(false,true); // Quando achar a bola, seta a segunda camera para 1;
 }
 void RobotSPL::movimentacao(){
     if(estadoDeJogo!= PLAYING){
@@ -88,7 +86,7 @@ void RobotSPL::movimentacao(){
     }
     
     if(posicao == ATACANTE){
-        if(getsensCamera()==1){
+        if(getsensCamera()==true){
             std::cout<< "Atacante indo ate a bola."<<std::endl;
         }
         else{
@@ -96,7 +94,7 @@ void RobotSPL::movimentacao(){
         }
     }
     else if(posicao == ZAGUEIRO){
-        if(getsensCamera()==1){
+        if(getsensCamera()==true){
             std::cout<< "Zagueiro indo ate a bola."<<std::endl;
         }
         else{
@@ -104,7 +102,7 @@ void RobotSPL::movimentacao(){
         }
     }
     else{
-        if(getsensCamera()==1){
+        if(getsensCamera()==true){
             //Considerando tambem a distancia da bola definida
             std::cout<< "Goleiro posicao de defesa."<<std::endl;
         }
@@ -122,27 +120,27 @@ void RobotSPL::estudaestadoDeJogo(){
         {
             case 0:
                 std::cout<< "Posição INITIAL:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"Robô não pode se mover, a não ser que seja para se levantar"<<std::endl;
                 break;
             case 1:
                 std::cout<< "Posição READY:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"Nesse estado o robô anda para sua posicao de 'kick off'"<<std::endl;
                 break;
             case 2:
                 std::cout<< "Posição SET:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"O robô para e espera o 'kick off'"<<std::endl;
                 break;
             case 3:
                 std::cout<< "Posição PLAYING:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"O robô está jogando"<<std::endl;
                 break;
             case 4:
                 std::cout<< "Posição PENALIZED:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"O robô foi penalizado e não pode se mover"<<std::endl;
                 break;
             case 5:
                 std::cout<< "Posição FINISHED:"<<std::endl;
-                std::cout<<""<<std::endl;
+                std::cout<<"Esse estado é atingido quando um 'tempo' acaba"<<std::endl;
                 break;
         default:
             std::cout<< "Valor invalido"<<std::endl;
